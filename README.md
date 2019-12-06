@@ -33,7 +33,7 @@ These instructions will get you a copy of the application up and running on your
 
 Please have the following installed:
 
-* **[Vue.js](https://vuejs.org/)** - Version 3.9.2
+* **[Vue.js](https://vuejs.org/)** - Version 2.6.10
 * **[Yarn](https://yarnpkg.com/lang/en/)** - Version 1.13.0
 
 This project was built using **[vue-cli](https://cli.vuejs.org/)**. So to install it, all you have to do is clone the project and to run locally:
