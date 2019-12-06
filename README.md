@@ -84,7 +84,6 @@ You can access your own app client's details via Cognito > Manage User Pools > A
 
 * After cloning the source from bitbucket, you should create a dev branch for yourself. (i.e. dev/{your_name})
 * Make any changes you need on the new branch. Be sure to merge any changes from the parent (i.e. master) branch, so that you won't get a nightmare later.
-* Make sure to run ./pre-commit.sh.
 * Perform a git rebase if you have to although its not necessary.
 * Push your changes to bitbucket and create a Pull Request to the parent branch.
 * Get the pull request approved before merging your changes back to the parent branch.
