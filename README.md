@@ -1,4 +1,4 @@
-# Passport Vue.js Sample App
+# TechPass Vue.js Sample App
 
 This is a basic sample app created using Vue.js to showcase the json data that the Cognito API returns mainly using the **Implicit Grant** as the OAuth Flow: 
 * **User Information**
