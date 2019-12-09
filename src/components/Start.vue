@@ -23,11 +23,3 @@ export default {
   name: "Start"
 };
 </script>
-<style scoped>
-h4 {
-  color: #a70300;
-}
-.sgds-button {
-  background-color: #a70300;
-}
-</style>

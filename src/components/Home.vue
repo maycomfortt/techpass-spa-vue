@@ -1,12 +1,11 @@
 <template>
     <div class="row">
         <div class="col">
-            <h4 class="has-text-primary has-text-left">
+            <h4 class="has-text-left">
                 <b>You have logged in successfully.</b>
             </h4>
             <p class="has-text-left padding--top--sm">
-                This is your
-                <b>User Information</b> from Cognito:
+                This is your <b>User Information</b> from Cognito:
             </p>
             <div class="row padding--top--sm">
                 <div class="col is-12">
@@ -58,7 +57,7 @@
                 <div class="row padding--top--sm">
                     <div class="col is-12">
                         <button
-                                class="sgds-button is-primary is-large is-fullwidth"
+                                class="sgds-button has-text-white is-large is-fullwidth"
                                 @click="$router.push('/logout')"
                         >Logout
                         </button>
@@ -90,6 +89,3 @@
         },
     }
 </script>
-
-<style>
-</style>
