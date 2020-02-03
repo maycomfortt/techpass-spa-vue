@@ -1,0 +1,7 @@
+@charset "utf-8";
+
+// override sgds default value
+$primary: #A70300;
+$sgds-font-path: "../node_modules/sgds-govtech/fonts";
+
+@import "node_modules/sgds-govtech/sgds/sass/sgds";

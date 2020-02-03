@@ -1,91 +1,41 @@
 <template>
-    <div class="row">
-        <div class="col">
-            <h4 class="has-text-left">
-                <b>You have logged in successfully.</b>
-            </h4>
-            <p class="has-text-left padding--top--sm">
-                This is your <b>User Information</b> from Cognito:
-            </p>
-            <div class="row padding--top--sm">
-                <div class="col is-12">
-                    <div class="alert alert-info has-text-justified">
-                        <pre>{{userInfo}}</pre>
-                    </div>
-                </div>
+    <div class="sgds-container padding--top--xl padding--bottom--xl is-fullwidth">
+        <div class="row is-centered padding--top--sm">
+            <div class="col is-2-desktop is-2-fullhd is-2-widescreen is-2-tablet is-4-touch is-4-mobile">
+                <img src="../assets/tp-logo.svg"/>
             </div>
-            <p class="has-text-left">
-                This is your
-                <b>Access Token</b> information:
-            </p>
-            <div class="row padding--top--sm">
-                <div class="col is-12">
-                    <div class="alert alert-info has-text-justified">
-                        <pre>{{accessTokenInfo}}</pre>
-                    </div>
-                </div>
+        </div>
+        <div class="row is-centered padding--top--md">
+            <div class="col is-8-desktop is-8-fullhd is-8-widescreen is-8-tablet is-8-touch is-12-mobile has-text-centered">
+                <h1><b><span class="has-text-primary">Tech</span>Pass Test App</b></h1>
             </div>
-            <p class="has-text-left">
-                This is your
-                <b>Id Token</b> information:
-            </p>
-            <div class="row padding--top--sm">
-                <div class="col is-12">
-                    <div class="alert alert-info has-text-justified">
-                        <pre>{{idTokenInfo}}</pre>
-                    </div>
-                </div>
+        </div>
+        <div class="row is-centered padding--top--md">
+            <div class="col is-8-desktop is-8-fullhd is-8-widescreen is-8-tablet is-8-touch is-12-mobile has-text-centered">
+                <p>
+                    Inspect your OAuth2.0 and OpenID Connect tokens that TechPass returns.<br/> 
+                    Click on the <b><span class="has-text-primary">Authenticate</span></b> button below to begin... 
+                </p>
             </div>
-            <p class="has-text-left">
-                This is your
-                <b>Refresh Token</b> information:
-            </p>
-            <div class="row padding--top--sm">
-                <div class="col is-12">
-                    <div class="alert alert-info has-text-justified">
-                        <pre>{{refreshTokenInfo}}</pre>
-                    </div>
-                </div>
-            </div>
-            <div class="row padding--top--sm">
-                <div class="col is-12">
-                    <p class="has-text-justified">You can now log out by clicking the logout button below and you will be redirected to a successful
-                        logout page.</p>
-                </div>
-            </div>
-            <div>
-                <div class="row padding--top--sm">
-                    <div class="col is-12">
-                        <button
-                                class="sgds-button has-text-white is-large is-fullwidth"
-                                @click="$router.push('/logout')"
-                        >Logout
-                        </button>
-                    </div>
-                </div>
-            </div>
+        </div>
+        <div class="row is-centered">
+            <button class="sgds-button is-rounded is-primary" @click="onAuthenticate">Authenticate...</button>
         </div>
     </div>
 </template>
 
-<script>
-    import UserInfoStore from "../app/user-info-store";
+<script lang="ts">
+import Vue from 'vue';
+import { Component, Inject } from 'vue-property-decorator';
 
-    export default {
-        name: "Home",
-        data: function () {
-            return {
-                userPoolId: process.env.VUE_APP_COGNITO_USERPOOL_ID,
-                userInfo: UserInfoStore.state.cognitoInfo,
-                accessTokenInfo: UserInfoStore.state.accessTokenInfo,
-                idTokenInfo: UserInfoStore.state.idTokenInfo,
-                refreshTokenInfo: UserInfoStore.state.refreshTokenInfo
-            };
-        },
-        filters: {
-            pretty: function (value) {
-                return JSON.stringify(JSON.parse(value), null, 2);
-            }
-        },
+import { AuthService } from '../services/auth.service';
+
+@Component({
+    name: 'Home'
+})
+export default class SideBar extends Vue { 
+    onAuthenticate() {
+        AuthService.instance().login();
     }
+}
 </script>

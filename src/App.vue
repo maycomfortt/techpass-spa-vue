@@ -1,32 +1,22 @@
 <template>
-  <div id="app">
-    <div class="masthead-container">
-      <Masthead/>
-      <MainNav/>
+    <div id="app">
+        <Masthead />
+
+        <router-view />
+
+        <Footer />
     </div>
-    <div class="content-container">
-      <SideBar/>
-    </div>
-    <div class="footer-container">
-      <Footer/>
-    </div>
-  </div>
 </template>
 
-<script>
-import "sgds-govtech/css/sgds.css";
-import "sgds-govtech-vue";
-import Masthead from "./components/layout/Masthead";
-import MainNav from "./components/layout/MainNav";
-import Footer from "./components/layout/Footer";
-import SideBar from "./components/layout/SideBar";
-export default {
-  name: "app",
-  components: {
-    Masthead,
-    MainNav,
-    Footer,
-    SideBar
-  }
-};
+<script lang="ts">
+import Vue from 'vue';
+import { Component } from 'vue-property-decorator';
+import Masthead from '@/components/Masthead.vue';
+import Footer from '@/components/Footer.vue';
+
+@Component({
+    name: 'App',
+    components: { Masthead, Footer }
+})
+export default class App extends Vue { }
 </script>

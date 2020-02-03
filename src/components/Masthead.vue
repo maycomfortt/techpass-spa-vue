@@ -13,11 +13,12 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "Masthead"
-};
-</script>
+<script lang="ts">
+import Vue from 'vue';
+import { Component } from 'vue-property-decorator';
 
-<style>
-</style>
+@Component({
+    name: 'Masthead'
+})
+export default class Masthead extends Vue { }
+</script>

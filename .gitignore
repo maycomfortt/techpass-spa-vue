@@ -36,3 +36,5 @@ _testOutputs/*
 # System Files
 .DS_Store
 Thumbs.db
+
+*.local

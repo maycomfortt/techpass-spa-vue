@@ -1,92 +1,68 @@
-# TechPass Vue.js Sample App
+# TechPass Test App in Vue.js
 
-This is a basic sample app created using Vue.js to showcase the json data that the Cognito API returns mainly using the **Implicit Grant** as the OAuth Flow: 
-* **User Information**
-* **Access Token Information**
-* **ID Token Information**
-* **Refresh Token information**
-
-Token data has been decoded and prettified for readability. The application also demonstrates login/logout based on secure/public routing.
-
-**Note: This app does not support sessions, so there is no data persistence.*
-
-Project's **app** folder consists of **3** main js files: 
-
-* **auth.js** - Contains wrapper methods for the Cognito API to facilitate CognitoAuth object and login/logut.
-* **user-info-api.js** - Contains ultility method for GET request to Cognito API endpoint.
-* **user-info-store.js** - Contains global JSON objects for storing states of logged in user information.
-
-Project's **components** folder consists of: 
-
-* **Error.vue** - Error message page. 
-* **Home.vue** - Home page on login.
-* **LogoutSuccess.vue** - On successful logout.
-* **Start.vue** - Home page before login.
-* **layout** folder with SGDS Standard Components for all gov.sg websites - **Masthead**, **MainNav**, **SideBar**, **Footer**
-* **router** folder with **index.js** - Vue Router for mapping components 
+This is a basic sample app created using Vue.js to showcase the JWT tokens thats an Identity Provider returns mainly using the **Implicit Grant** flow. Token data has been decoded and prettified for readability.
 
 ## Getting Started
+The project uses [Vue.js](https://vuejs.org/). It scripts are written with [Typescript](https://www.typescriptlang.org/index.html). You can find out how Vue works with Typescript [here](https://vuejs.org/v2/guide/typescript.html). 
 
-These instructions will get you a copy of the application up and running on your local machine for development and testing purposes. 
+[Vue CLI Service](https://cli.vuejs.org/guide/cli-service.html) is used to compile and serve the page locally. 
 
-### Prerequisites
+> Note: This app does not support sessions, so there is no data persistence.
 
-Please have the following installed:
+### Project Structure
+* src/components - Vue.js components
+* src/services - Services supporting user interactivities
+* src/router.ts - Vue Router for mapping components 
 
-* **[Vue.js](https://vuejs.org/)** - Version 2.6.10
-* **[Yarn](https://yarnpkg.com/lang/en/)** - Version 1.13.0
+### Setup
+1. Clone the repo
+2. Run `npm install` or `yarn install`.
+3. To compile and serve: `npm start` or `yarn run start`.
 
-This project was built using **[vue-cli](https://cli.vuejs.org/)**. So to install it, all you have to do is clone the project and to run locally:
+> You will need to provision a client id from your identity provider of choice and configure the sign in and sign out URL (and any additional parameters that the service might need). 
+> 
+> Please refer to the corresponding guide for the managed service.
 
-``` 
-// 1. Install dependencies using yarn or npm (either should be fine)
-yarn install 
-OR 
-npm install (if you are using npm)
+### Environment Variables
+The following environment variables are needed by the OIDC client in order to sign in to the identity provider (IdP).
 
-// 2. Serve with hot reload at localhost:8080
-yarn serve
-OR
-npm run serve (if you are using npm)
-
-// Build for production 
-yarn run build
-```
-
-## Environment Variables
-
-We need to store the Amazon Cognito related settings in .env property files in order to make them available for Vue CLI during the application runtime. Environment variables can be modified accordingly to your own Cognito App Client, Note that you will have to create a .env file containining the following variables and add it to the project folder for local development. For this SPA, we also used a .env.local file of which will be ignored by Git.  
-
-You can access your own app client's details via Cognito > Manage User Pools > App Client Settings and General Settings. You can also modify the Redirect URIs and App URLs accordingly to your own port usage where you run your Vue application but you will need to add it to your Cognito app client settings as well.  
+In order to run the service locally, you will need to create a `.env.local` file and provide **VUE_APP_PROVIDER** and **VUE_APP_CLIENT_ID** env vars. They should not be committed into the repository.
 
 | Environment Variable Name | Value | Location
 | ------------- | ------------- | ------------- |
-| VUE_APP_COGNITO_USERPOOL_ID           | Specify the Developer's **Userpool ID** for local development.|.env.local |
-| VUE_APP_COGNITO_APP_DOMAIN            | Specify the Cognito's **Domain Name**                         | .env.local | 
-| VUE_APP_COGNITO_CLIENT_ID             | Specify the Cognito's App **Client ID**                 | .env.local | 
-| VUE_APP_COGNITO_REDIRECT_URI          | http://localhost:8080/login/oauth2/code/cognito           | .env |
-| VUE_APP_COGNITO_REDIRECT_URI_SIGNOUT  | http://localhost:8080/logout                              | .env |
-| VUE_APP_APP_URL                       | http://localhost:8080                                     | .env |
+| VUE_APP_SIGN_IN_REDIRECT_URI  | URL for the IdP to redirect to after successful sign in  | .env |
+| VUE_APP_SIGN_OUT_REDIRECT_URI | URL for the IdP to redirect to after successful sign out | .env | 
+| VUE_APP_PROVIDER              | URL to the IdP (i.e. https://login.microsoftonline.com/common/v2.0/)      | .env.local |
+| VUE_APP_CLIENT_ID             | ID string of the client application that you have registered with the IdP | .env.local |
 
-## Relevant External Libraries/Node Packages Being Used
+## Changelog
+- v0.1.0
+  - Initial commit
+- v0.2.0
+  - Remove dependency on Cognito and move to generic OIDC client.
+  - Migrate code base to Typescript.
 
-* [jwt-decode](https://github.com/auth0/jwt-decode) - For decoding of JWTs which are Base64Url encoded
-* [amazon-cognito-auth-js](https://github.com/aws/amazon-cognito-auth-js) -  Amazon Cognito Auth SDK for JavaScript simplifies adding sign-up, sign-in with user profile functionality to web apps.
-* [amazon-cognito-identity-js](https://www.npmjs.com/package/amazon-cognito-identity-js) - Amazon Cognito Identity SDK for JavaScript
-* [axios](https://github.com/axios/axios) - Promise based HTTP client for the browser and node.js
-* [vue-router](https://router.vuejs.org/) - Vue Router is the official router for Vue.js. It deeply integrates with Vue.js core to make building Single Page Applications with Vue.js a breeze.
-* [sgds-vue](https://github.com/GovTechSG/sgds-govtech-vue) - Vue components powered by Singapore Government Design System. **In early development stages.*
+## Contributing
 
-## Testing
-*[To be added]*
+We welcome your involvement, be it fixing bugs or implementing new features that you find relevant to this library.
 
-## Committing
+To contribute, you may follow the steps below:
 
-* After cloning the source from bitbucket, you should create a dev branch for yourself. (i.e. dev/{your_name})
-* Make any changes you need on the new branch. Be sure to merge any changes from the parent (i.e. master) branch, so that you won't get a nightmare later.
-* Perform a git rebase if you have to although its not necessary.
-* Push your changes to bitbucket and create a Pull Request to the parent branch.
-* Get the pull request approved before merging your changes back to the parent branch.
+1. Fork the repo
+2. Create a new branch from development to work on your contribution
+3. Create a pull request back when you are done
+4. Please refer to the ISSUES and PULL REQUEST templates when raising them. The reviewers will evaluate the request before merging into master
+
+You can raise an issue within this Github repository to kick-start the discussion first.
+
+## License
+Licensed under the [MIT LICENSE](./LICENSE)
+
+## Relevant Information
+* [OAuth 2.0 protocol standard](https://oauth.net/2/)
+* [OpenID](https://openid.net/)
+* [JWT](https://jwt.io/)
+* [OIDC Client JavaScript Library](https://github.com/IdentityModel/oidc-client-js)
 
 
 ## Acknowledgments
@@ -97,4 +73,3 @@ Huge thank you to the almighty [Google](https://www.google.com/), [StackOverflow
 * [RealWorld Example App](https://github.com/gothinkster/vue-realworld-example-app/blob/master/README.md) - Codebase to demonstrate a fully fledged fullstack application built with Vue.js including CRUD operations, authentication, routing, pagination, and more.
 * [JWT.IO](https://jwt.io/) - Decode, verify and generate JWT.
 * [NPM vs Yarn Cheat Sheet](https://shift.infinite.red/npm-vs-yarn-cheat-sheet-8755b092e5cc) - Cheatsheet for yarn - npm equivalents.
-
