@@ -24,20 +24,18 @@ pipeline {
          }
       }
 
-    // stage('Push and Tag Image to DockerHub') {
-    //      steps {
-    //             sh 'docker logout'
-    //             sh 'echo $dockerhub_PSW | docker login -u $dockerhub_USR --password-stdin'
-    //             sh 'docker tag jenkins/jenkins:lts-jdk11 $dockerhub_USR/${REPOSITORY_TAG}'
-    //             sh 'docker push $dockerhub_USR/${REPOSITORY_TAG}'
-    //         }
-    //     }
+    stage('Push and Tag Image to DockerHub') {
+         steps {
+                sh 'docker logout'
+                sh 'echo $dockerhub_PSW | docker login -u $dockerhub_USR --password-stdin'
+                sh 'docker tag jenkins/jenkins:lts-jdk11 $dockerhub_USR/${REPOSITORY_TAG}'
+                sh 'docker push $dockerhub_USR/${REPOSITORY_TAG}'
+            }
+        }
 
     stage('Deploy to Cluster') {        
           steps {
             withKubeConfig([credentialsId: 'kubernetes']) {
-                 //  sh 'kubectl run dotnetcorev1 --image=${REPOSITORY_TAG} '
-                   //sh 'kubectl expose pod dotnetcorev1 --type="NodePort" --port 80'
                        sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
             }         
           }
