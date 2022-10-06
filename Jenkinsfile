@@ -2,7 +2,7 @@ pipeline {
    agent any
    environment {
      
-     SERVICE_NAME = "TECHPASS-SPA-VUE"
+     SERVICE_NAME = "tech-pass-vue"
      REPOSITORY_TAG="${ORGANIZATION_NAME}-${SERVICE_NAME}:${BUILD_ID}"
       dockerhub=credentials('Docker')
    }
