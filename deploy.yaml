@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vuespa
+spec:
+  selector:
+    matchLabels:
+      app: vuespa
+  replicas: 1
+  template: # template for the pods
+    metadata:
+      labels:
+        app: vuespa
+    spec:
+      containers:
+      - name: vuespa
+        image: ${REPOSITORY_TAG}
+        imagePullPolicy: IfNotPresent
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vuespa
+
+spec:
+  # This defines which pods are going to be represented by this Service
+  # The service becomes a network endpoint for either other services
+  # or maybe external users to connect to (eg browser)
+  selector:
+    app: vuespa
+
+  ports:
+    - name: http
+      port: 80
+      nodePort: 30081
+
+  type: NodePort
