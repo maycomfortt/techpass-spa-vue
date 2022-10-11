@@ -36,7 +36,6 @@ Vue.use(VueSimpleAlert);
 export default class SideBar extends Vue { 
     onAuthenticate() {
        this.$alert("Hello Vue Simple Alert.");
-       //AuthService.instance().login();
     }
 }
 </script>
