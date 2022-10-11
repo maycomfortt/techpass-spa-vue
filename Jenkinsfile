@@ -18,7 +18,7 @@ pipeline {
 
     stage('Build Image') {
          steps {
-           sh 'docker image build -t ${WORKSPACE}/docker .'
+           sh 'envsubst < ${WORKSPACE}/docker | docker image build -t .'
            sh 'docker run -d ${REPOSITORY_TAG}'
           
          }
