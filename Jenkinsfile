@@ -18,7 +18,7 @@ pipeline {
 
     stage('Build Image') {
          steps {
-           sh 'docker image build -t ${REPOSITORY_TAG} .'
+           sh 'docker image build -t ${WORKSPACE}/docker .'
            sh 'docker run -d ${REPOSITORY_TAG}'
           
          }
