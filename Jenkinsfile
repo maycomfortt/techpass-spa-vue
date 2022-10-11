@@ -18,9 +18,10 @@ pipeline {
 
     stage('Build Image') {
          steps {
-           sh 'docker image build -t ${REPOSITORY_TAG}  https://github.com/${ORGANIZATION_NAME}/${SERVICE_NAME}#env.BRANCH_NAME .'
-           sh 'docker run -d ${REPOSITORY_TAG} https://github.com/${ORGANIZATION_NAME}/${SERVICE_NAME}#env.BRANCH_NAME'
-           sh 'echo https://github.com/${ORGANIZATION_NAME}/${SERVICE_NAME}#env.BRANCH_NAME'
+           sh 'echo https://github.com/${ORGANIZATION_NAME}/${SERVICE_NAME}#'+env.BRANCH_NAME
+           sh 'docker image build -t ${REPOSITORY_TAG}  https://github.com/${ORGANIZATION_NAME}/${SERVICE_NAME}#' +env.BRANCH_NAME+' .'
+           sh 'docker run -d ${REPOSITORY_TAG} https://github.com/${ORGANIZATION_NAME}/${SERVICE_NAME}#'+env.BRANCH_NAME
+     
           
          }
       }
