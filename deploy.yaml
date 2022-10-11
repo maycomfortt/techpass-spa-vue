@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: vuespa
-        image: ${REPOSITORY_TAG}
+        image: ${REPOSITORY_TAG}#${BRANCH_NAME}
         imagePullPolicy: IfNotPresent
         readinessProbe:
           httpGet:
@@ -36,6 +36,6 @@ spec:
   ports:
     - name: http
       port: 80
-      nodePort: 8080
+      nodePort: 30082
 
   type: NodePort
