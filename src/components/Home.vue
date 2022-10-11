@@ -27,15 +27,16 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component, Inject } from 'vue-property-decorator';
-
+import VueSimpleAlert from "vue-simple-alert";
 import { AuthService } from '../services/auth.service';
-
+Vue.use(VueSimpleAlert);
 @Component({
     name: 'Home'
 })
 export default class SideBar extends Vue { 
     onAuthenticate() {
-        AuthService.instance().login();
+       this.$alert("Hello Vue Simple Alert.");
+       //AuthService.instance().login();
     }
 }
 </script>
