@@ -38,7 +38,7 @@ pipeline {
     stage('Deploy to Cluster') {        
           steps {
             withKubeConfig([credentialsId: 'kubernetes']) {
-                       sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
+                       sh 'envsubst < ${WORKSPACE}#${BRANCH_NAME}/deploy.yaml | kubectl apply -f -'
             }         
           }
       }
